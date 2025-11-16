@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Collaborative Editor</title>
+</head>
+<body>
+<h2>Collaborative Code Editor</h2>
+<textarea id="editor" style="width:100%;height:400px;"></textarea>
+
+<script>
+const ws = new WebSocket("ws://127.0.0.1:8765");
+const editor = document.getElementById("editor");
+
+// Track document version locally
+let version = 0;
+
+// Flag to prevent overwriting while typing
+let isTyping = false;
+
+// Receive updates from server
+ws.onmessage = (event) => {
+    const msg = JSON.parse(event.data);
+    if (msg.type === "full") {
+        // Only update if not typing
+        if (!isTyping) {
+            editor.value = msg.text;
+        }
+        version = msg.version;
+    }
+};
+
+// Send patches when user types
+editor.addEventListener("input", () => {
+    isTyping = true;
+    ws.send(JSON.stringify({
+        type: "patch",
+        text: editor.value,
+        version: version
+    }));
+    // Release typing lock after a short delay
+    setTimeout(() => { isTyping = false; }, 100);
+});
+</script>
+</body>
+</html>
