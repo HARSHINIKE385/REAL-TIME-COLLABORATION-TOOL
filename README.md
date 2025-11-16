@@ -26,3 +26,8 @@ In summary, the Collaborative WebSocket Editor combines Python, JavaScript, and 
 
 OUTPUT SCREENSHOTS:
 
+<img width="1009" height="393" alt="Image" src="https://github.com/user-attachments/assets/8627e97c-c4a6-45ec-a020-e00bfb4ecc46" />
+
+<img width="560" height="125" alt="Image" src="https://github.com/user-attachments/assets/dde952c5-06c5-4d4e-b292-fc291185d994" />
+
+<img width="1366" height="724" alt="Image" src="https://github.com/user-attachments/assets/f4a1c100-4275-42fc-8707-85a4c7233f8a" />
